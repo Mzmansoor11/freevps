@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ubazol - Delivery Marketplace App Preview</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #F8FAFC;
+            color: #1E293B;
+        }
+        
+        .phone-frame {
+            max-width: 375px;
+            margin: 20px auto;
+            background: #000;
+            border-radius: 25px;
+            padding: 5px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+        
+        .screen {
+            background: #F8FAFC;
+            border-radius: 20px;
+            overflow: hidden;
+            height: 812px;
+        }
+        
+        .header {
+            background: #FFFFFF;
+            padding: 15px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .location-info {
+            display: flex;
+            align-items: center;
+            flex: 1;
+        }
+        
+        .location-icon {
+            color: #6366F1;
+            margin-right: 8px;
+        }
+        
+        .location-text h4 {
+            font-size: 12px;
+            color: #94A3B8;
+            margin-bottom: 2px;
+        }
+        
+        .location-text p {
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .search-icon {
+            color: #94A3B8;
+            padding: 8px;
+        }
+        
+        .greeting {
+            padding: 24px 16px;
+        }
+        
+        .greeting h1 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+        
+        .greeting p {
+            font-size: 16px;
+            color: #64748B;
+        }
+        
+        .search-bar {
+            background: #FFFFFF;
+            margin: 0 16px 24px;
+            padding: 16px;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+        }
+        
+        .search-bar-icon {
+            color: #94A3B8;
+            margin-right: 8px;
+        }
+        
+        .search-placeholder {
+            color: #94A3B8;
+            font-size: 16px;
+        }
+        
+        .section {
+            margin-bottom: 32px;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: bold;
+            padding: 0 16px 16px;
+        }
+        
+        .categories {
+            display: flex;
+            gap: 16px;
+            padding: 0 16px;
+            overflow-x: auto;
+        }
+        
+        .category {
+            text-align: center;
+            min-width: 80px;
+        }
+        
+        .category-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+            font-size: 24px;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .category-text {
+            font-size: 12px;
+            text-align: center;
+        }
+        
+        .restaurants { background: #FF6B6B; }
+        .grocery { background: #4ECDC4; }
+        .pharmacy { background: #45B7D1; }
+        .electronics { background: #FFA07A; }
+        .fashion { background: #98D8C8; }
+        .books { background: #F06292; }
+        
+        .vendors {
+            display: flex;
+            gap: 16px;
+            padding: 0 16px;
+            overflow-x: auto;
+        }
+        
+        .vendor-card {
+            background: #FFFFFF;
+            border-radius: 12px;
+            min-width: 200px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .vendor-image {
+            width: 100%;
+            height: 120px;
+            background: linear-gradient(45deg, #6366F1, #8B5CF6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .vendor-info {
+            padding: 16px;
+        }
+        
+        .vendor-name {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+        
+        .vendor-cuisine {
+            font-size: 14px;
+            color: #64748B;
+            margin-bottom: 8px;
+        }
+        
+        .vendor-meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: #64748B;
+        }
+        
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+        
+        .star {
+            color: #F59E0B;
+        }
+        
+        .bottom-nav {
+            background: #FFFFFF;
+            border-top: 1px solid #E2E8F0;
+            display: flex;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+        }
+        
+        .nav-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            color: #94A3B8;
+            text-decoration: none;
+            font-size: 12px;
+        }
+        
+        .nav-item.active {
+            color: #6366F1;
+        }
+        
+        .nav-icon {
+            font-size: 20px;
+        }
+        
+        .demo-note {
+            background: #6366F1;
+            color: white;
+            text-align: center;
+            padding: 16px;
+            margin: 20px;
+            border-radius: 12px;
+        }
+        
+        .demo-note h3 {
+            margin-bottom: 8px;
+        }
+        
+        .demo-note p {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+        
+        .quick-actions {
+            display: flex;
+            gap: 16px;
+            padding: 0 16px;
+        }
+        
+        .quick-action {
+            flex: 1;
+            background: #FFFFFF;
+            padding: 24px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .quick-action-icon {
+            font-size: 24px;
+            color: #6366F1;
+            margin-bottom: 8px;
+        }
+        
+        .quick-action-text {
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .badge {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: #F59E0B;
+            color: white;
+            border-radius: 10px;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-note">
+        <h3>🎉 Ubazol - Delivery Marketplace App</h3>
+        <p>This is a preview of your React Native app. The actual app includes full functionality, navigation, cart management, order tracking, and more!</p>
+    </div>
+
+    <div class="phone-frame">
+        <div class="screen">
+            <!-- Header -->
+            <div class="header">
+                <div class="location-info">
+                    <span class="location-icon">📍</span>
+                    <div class="location-text">
+                        <h4>Deliver to</h4>
+                        <p>Set delivery address</p>
+                    </div>
+                </div>
+                <span class="search-icon">🔍</span>
+            </div>
+
+            <!-- Greeting -->
+            <div class="greeting">
+                <h1>Hello there! 👋</h1>
+                <p>What would you like to order today?</p>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="search-bar">
+                <span class="search-bar-icon">🔍</span>
+                <span class="search-placeholder">Search for vendors, products...</span>
+            </div>
+
+            <!-- Categories -->
+            <div class="section">
+                <h2 class="section-title">Categories</h2>
+                <div class="categories">
+                    <div class="category">
+                        <div class="category-icon restaurants">🍽️</div>
+                        <div class="category-text">Restaurants</div>
+                    </div>
+                    <div class="category">
+                        <div class="category-icon grocery">🛒</div>
+                        <div class="category-text">Grocery</div>
+                    </div>
+                    <div class="category">
+                        <div class="category-icon pharmacy">💊</div>
+                        <div class="category-text">Pharmacy</div>
+                    </div>
+                    <div class="category">
+                        <div class="category-icon electronics">📱</div>
+                        <div class="category-text">Electronics</div>
+                    </div>
+                    <div class="category">
+                        <div class="category-icon fashion">👕</div>
+                        <div class="category-text">Fashion</div>
+                    </div>
+                    <div class="category">
+                        <div class="category-icon books">📚</div>
+                        <div class="category-text">Books</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Featured Vendors -->
+            <div class="section">
+                <h2 class="section-title">Featured Vendors</h2>
+                <div class="vendors">
+                    <div class="vendor-card">
+                        <div class="vendor-image">Pizza Palace</div>
+                        <div class="vendor-info">
+                            <div class="vendor-name">Pizza Palace</div>
+                            <div class="vendor-cuisine">Italian</div>
+                            <div class="vendor-meta">
+                                <div class="rating">
+                                    <span class="star">⭐</span>
+                                    <span>4.5</span>
+                                </div>
+                                <span>25-35 min</span>
+                                <span>$2.99 delivery</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="vendor-card">
+                        <div class="vendor-image">Fresh Market</div>
+                        <div class="vendor-info">
+                            <div class="vendor-name">Fresh Market</div>
+                            <div class="vendor-cuisine">Grocery</div>
+                            <div class="vendor-meta">
+                                <div class="rating">
+                                    <span class="star">⭐</span>
+                                    <span>4.7</span>
+                                </div>
+                                <span>15-25 min</span>
+                                <span>$1.99 delivery</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="vendor-card">
+                        <div class="vendor-image">Tech Store</div>
+                        <div class="vendor-info">
+                            <div class="vendor-name">Tech Store</div>
+                            <div class="vendor-cuisine">Electronics</div>
+                            <div class="vendor-meta">
+                                <div class="rating">
+                                    <span class="star">⭐</span>
+                                    <span>4.3</span>
+                                </div>
+                                <span>45-60 min</span>
+                                <span>$4.99 delivery</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="section">
+                <h2 class="section-title">Quick Actions</h2>
+                <div class="quick-actions">
+                    <div class="quick-action">
+                        <div class="quick-action-icon">📋</div>
+                        <div class="quick-action-text">Order History</div>
+                    </div>
+                    <div class="quick-action">
+                        <div class="quick-action-icon">🛒</div>
+                        <div class="quick-action-text">View Cart</div>
+                        <div class="badge">3</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Navigation -->
+            <div class="bottom-nav">
+                <a href="#" class="nav-item active">
+                    <span class="nav-icon">🏠</span>
+                    <span>Home</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">🏪</span>
+                    <span>Vendors</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">🛒</span>
+                    <span>Cart</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">📋</span>
+                    <span>Orders</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">👤</span>
+                    <span>Profile</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="demo-note">
+        <h3>🚀 App Features</h3>
+        <p><strong>✅ Complete Features:</strong> Shopping cart, order tracking, location services, push notifications, user management, vendor discovery, real-time updates, and professional UI/UX design.</p>
+        <br>
+        <p><strong>🛠 Technology:</strong> React Native + Expo, Context API state management, AsyncStorage, Location services, Push notifications, Modern navigation.</p>
+    </div>
+</body>
+</html>
