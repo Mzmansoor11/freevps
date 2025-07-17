@@ -1,73 +1,73 @@
-# Ubazol-Like App Research & Development Plan
+# Ubazol App Development Plan
 
-## Research Findings
+## App Description
 
-Based on my research, I found several similar applications that provide location-based services and business discovery:
+Ubazol is a delivery marketplace app that enables customers to order goods from vendors and arrange delivery to drop-off locations. It's similar to apps like DoorDash, Uber Eats, Instacart, or Postmates but can handle various types of goods beyond just food.
 
-### UbiZ App Features:
-- **Geolocation-based discounts** - Real-time access to local deals and benefits
-- **Push notifications** - Instant alerts for promotions from selected businesses
-- **Monthly prizes and raffles** - Gamification to encourage app usage
-- **Business discovery** - Find new places and services
-- **Merchant platform** - Tools for businesses to manage customer loyalty
-- **Multi-language support** - Available in multiple languages globally
+## Core Features
 
-### Ubiliz Features:
-- **Gift card management** - Create and sell digital gift cards
-- **Booking and reservation system** - Handle appointments and reservations
-- **Marketing tools** - Promotional campaigns and customer engagement
-- **Business management** - Comprehensive dashboard for service providers
+### Customer App Features:
+1. **Vendor Discovery** - Browse and search local vendors/stores
+2. **Product Catalog** - View detailed product listings with photos, descriptions, and prices
+3. **Shopping Cart** - Add/remove items, modify quantities, apply discounts
+4. **Order Management** - Place orders, track delivery status, order history
+5. **Delivery Scheduling** - Choose delivery time slots and drop-off locations
+6. **Payment Integration** - Multiple payment methods (cards, digital wallets, cash)
+7. **Real-time Tracking** - Track delivery driver location and estimated arrival
+8. **Rating & Reviews** - Rate vendors, products, and delivery experience
+9. **Favorites & Reorders** - Save favorite vendors and easily reorder
+10. **Push Notifications** - Order updates, promotions, delivery alerts
 
-## Planned App Features
+### Vendor Dashboard Features:
+1. **Product Management** - Add/edit products, manage inventory, pricing
+2. **Order Processing** - Receive and manage incoming orders
+3. **Analytics** - Sales reports, popular products, customer insights
+4. **Delivery Coordination** - Assign orders to delivery drivers
+5. **Promotions** - Create discounts, deals, and special offers
+6. **Customer Communication** - Chat with customers about orders
 
-I will build a comprehensive location-based discovery and loyalty app called **"Ubazol"** with the following features:
+### Delivery Driver Features:
+1. **Order Assignment** - Accept/decline delivery requests
+2. **Route Optimization** - GPS navigation to pickup and delivery locations
+3. **Order Tracking** - Update delivery status and communicate with customers
+4. **Earnings Tracking** - View delivery earnings and payment history
+5. **Photo Confirmation** - Proof of delivery photos
 
-### Core User Features:
-1. **Location-Based Discovery** - Find nearby businesses, restaurants, and services
-2. **Real-Time Deals** - Access exclusive discounts and promotions based on current location
-3. **Loyalty Programs** - Earn points, collect stamps, and redeem rewards
-4. **Smart Notifications** - Personalized push notifications for relevant deals
-5. **Favorites Management** - Save and organize preferred businesses
-6. **User Profiles** - Track rewards, points, and purchase history
-7. **Social Features** - Share deals and recommendations with friends
-8. **Maps Integration** - Interactive maps with business locations and directions
-
-### Business Dashboard Features:
-1. **Merchant Registration** - Easy onboarding for new businesses
-2. **Deal Management** - Create and manage promotions and discounts
-3. **Customer Analytics** - Insights into customer behavior and preferences
-4. **Loyalty Program Setup** - Configure points, rewards, and incentives
-5. **Push Notification Campaigns** - Target customers with location-based messages
-6. **Performance Metrics** - Track campaign effectiveness and ROI
-
-### Technical Features:
-1. **Geofencing** - Automatic deal activation when entering business areas
-2. **QR Code Integration** - Easy redemption and check-ins
-3. **Multi-platform Support** - Web, iOS, and Android applications
-4. **Real-time Synchronization** - Live updates across all platforms
-5. **Secure Payment Integration** - Support for multiple payment methods
-6. **Offline Mode** - Basic functionality without internet connection
+### Admin Features:
+1. **Platform Management** - Oversee vendors, drivers, and customers
+2. **Commission Management** - Set platform fees and vendor commissions
+3. **Dispute Resolution** - Handle customer complaints and refunds
+4. **Analytics Dashboard** - Platform-wide metrics and performance
 
 ## Technology Stack
 
-- **Frontend**: React Native (mobile), React.js (web)
+- **Frontend**: React Native (mobile), React.js (web dashboard)
 - **Backend**: Node.js with Express
 - **Database**: MongoDB with Mongoose
-- **Authentication**: JWT tokens
-- **Maps**: Google Maps API
+- **Authentication**: JWT tokens with role-based access
+- **Maps & Navigation**: Google Maps API with real-time tracking
 - **Notifications**: Firebase Cloud Messaging
 - **Payment**: Stripe integration
-- **Real-time**: Socket.io for live updates
+- **Real-time**: Socket.io for live order updates
+- **Image Storage**: Cloudinary for product and delivery photos
+- **Search**: Elasticsearch for product and vendor search
 
-## Development Approach
+## App Architecture
 
-1. Start with a React Native mobile application
-2. Implement core location-based features first
-3. Add business dashboard functionality
-4. Integrate payment and loyalty systems
-5. Implement real-time notifications
-6. Add social and sharing features
-7. Create comprehensive testing suite
-8. Deploy with proper CI/CD pipeline
+### User Roles:
+1. **Customer** - Places orders and receives deliveries
+2. **Vendor** - Manages products and fulfills orders
+3. **Driver** - Delivers orders from vendors to customers
+4. **Admin** - Manages the entire platform
 
-This app will provide a modern, user-friendly experience for discovering local businesses while offering powerful tools for merchants to engage with customers.
+### Core Modules:
+1. **Authentication & User Management**
+2. **Vendor & Product Catalog**
+3. **Shopping Cart & Checkout**
+4. **Order Management System**
+5. **Delivery & Logistics**
+6. **Payment Processing**
+7. **Real-time Notifications**
+8. **Analytics & Reporting**
+
+This app will provide a comprehensive solution for on-demand delivery of goods from local vendors to customers.
