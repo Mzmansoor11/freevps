@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ubazol - Delivery Marketplace</title>
+    <meta name="description" content="Order goods from local vendors with fast delivery to your location">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1E293B;
+            background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .hero {
+            text-align: center;
+            color: white;
+            padding: 60px 20px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #6366F1;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+        
+        .features {
+            background: white;
+            border-radius: 20px;
+            padding: 60px 40px;
+            margin: 40px 0;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        }
+        
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #1E293B;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .feature {
+            text-align: center;
+            padding: 30px;
+            border-radius: 15px;
+            background: #F8FAFC;
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .feature h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #1E293B;
+        }
+        
+        .feature p {
+            color: #64748B;
+            font-size: 1.1rem;
+        }
+        
+        .app-preview {
+            background: #F8FAFC;
+            border-radius: 20px;
+            padding: 60px 40px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .phone-mockup {
+            max-width: 300px;
+            margin: 0 auto 40px;
+            background: #000;
+            border-radius: 25px;
+            padding: 10px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+        
+        .phone-screen {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            height: 500px;
+            overflow: hidden;
+        }
+        
+        .app-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #E2E8F0;
+        }
+        
+        .app-greeting {
+            margin-bottom: 20px;
+        }
+        
+        .app-greeting h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+        
+        .app-greeting p {
+            color: #64748B;
+        }
+        
+        .app-categories {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .app-category {
+            background: #6366F1;
+            color: white;
+            padding: 15px 10px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .download-section {
+            background: linear-gradient(135deg, #1E293B 0%, #334155 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 60px 40px;
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        .download-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .download-section p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+        
+        .download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .download-btn {
+            background: white;
+            color: #1E293B;
+            padding: 15px 30px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.3s ease;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .footer {
+            text-align: center;
+            color: white;
+            padding: 40px 20px;
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .features {
+                padding: 40px 20px;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .download-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        
+        .status-badge {
+            display: inline-block;
+            background: #10B981;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero">
+            <div class="status-badge">🚀 Now Live!</div>
+            <h1>Ubazol</h1>
+            <p>Order goods from local vendors with fast delivery to your location</p>
+            <a href="#features" class="cta-button">Explore Features</a>
+        </div>
+        
+        <!-- Features Section -->
+        <div class="features" id="features">
+            <h2>Why Choose Ubazol?</h2>
+            <div class="feature-grid">
+                <div class="feature">
+                    <div class="feature-icon">🏪</div>
+                    <h3>Local Vendors</h3>
+                    <p>Discover and order from restaurants, grocery stores, pharmacies, and more in your area</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🚚</div>
+                    <h3>Fast Delivery</h3>
+                    <p>Get your orders delivered quickly to your preferred drop-off location</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📱</div>
+                    <h3>Easy Ordering</h3>
+                    <p>Simple and intuitive app interface makes ordering quick and hassle-free</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🔔</div>
+                    <h3>Real-time Updates</h3>
+                    <p>Track your order status and get notifications about delivery progress</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">💳</div>
+                    <h3>Secure Payments</h3>
+                    <p>Multiple payment options with secure and encrypted transactions</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">⭐</div>
+                    <h3>Quality Service</h3>
+                    <p>Rate vendors and delivery experience to maintain high service standards</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- App Preview -->
+        <div class="app-preview">
+            <h2 style="margin-bottom: 30px; color: #1E293B;">See the App in Action</h2>
+            <div class="phone-mockup">
+                <div class="phone-screen">
+                    <div class="app-header">
+                        <div>📍 <small>Deliver to</small><br><strong>Your Location</strong></div>
+                        <div>🔍</div>
+                    </div>
+                    <div class="app-greeting">
+                        <h3>Hello there! 👋</h3>
+                        <p>What would you like to order?</p>
+                    </div>
+                    <div class="app-categories">
+                        <div class="app-category">🍽️ Restaurants</div>
+                        <div class="app-category">🛒 Grocery</div>
+                        <div class="app-category">💊 Pharmacy</div>
+                        <div class="app-category">📱 Electronics</div>
+                        <div class="app-category">👕 Fashion</div>
+                        <div class="app-category">📚 Books</div>
+                    </div>
+                    <div style="text-align: left;">
+                        <strong>Featured Vendors</strong>
+                        <div style="margin-top: 10px; padding: 10px; background: #F8FAFC; border-radius: 8px;">
+                            <strong>🍕 Pizza Palace</strong><br>
+                            <small>⭐ 4.5 • 25-35 min • $2.99 delivery</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Download Section -->
+        <div class="download-section">
+            <h2>Ready to Start Ordering?</h2>
+            <p>Join thousands of customers already using Ubazol for their delivery needs</p>
+            <div class="download-buttons">
+                <a href="#" class="download-btn">
+                    <span>📱</span>
+                    <div>
+                        <div style="font-size: 0.8rem;">Available on</div>
+                        <div>App Store</div>
+                    </div>
+                </a>
+                <a href="#" class="download-btn">
+                    <span>🤖</span>
+                    <div>
+                        <div style="font-size: 0.8rem;">Get it on</div>
+                        <div>Google Play</div>
+                    </div>
+                </a>
+                <a href="app-preview.html" class="download-btn">
+                    <span>🌐</span>
+                    <div>
+                        <div style="font-size: 0.8rem;">Try the</div>
+                        <div>Web App</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <p>&copy; 2025 Ubazol. Built with React Native and Expo.</p>
+            <p>Your local delivery marketplace solution.</p>
+        </div>
+    </div>
+</body>
+</html>
