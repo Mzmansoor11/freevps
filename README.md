@@ -1,44 +1,50 @@
 # Mzansi Cart — South African Marketplace
 
-Mzansi Cart is a marketplace concept for discovering local vendors, shopping across selected categories, placing orders and arranging delivery. The initial launch focus is Johannesburg, with a staged expansion plan for South Africa.
+Mzansi Cart is a marketplace app prototype for discovering local vendors, shopping selected categories, and arranging delivery. The first launch market is planned for Johannesburg, with a staged expansion across South Africa.
 
-## Brand direction
+## Brand
 - **Name:** Mzansi Cart
-- **Positioning:** Shop local. Get it delivered.
-- **Primary colour:** Deep South African green (#174B35)
-- **Secondary colour:** Leaf green (#246B4A)
+- **Tagline:** Shop local. Get it delivered.
+- **Primary:** Deep green (#174B35)
+- **Secondary:** Leaf green (#246B4A)
 - **Accent:** Warm gold (#E3A62F)
 
-## Initial launch plan
-1. Start with groceries and household essentials from existing local vendors.
+## Launch sequence
+1. Start with groceries and household essentials from approved local vendors.
 2. Add restaurants and takeaways after the first vendor/order workflow is proven.
 3. Expand into electronics, fashion and general merchandise.
-4. Add pharmacy listings only after appropriate licensed partners and regulatory checks are in place.
+4. Add pharmacy listings only with appropriately licensed partners and regulatory checks.
 
-## Current prototype capabilities
-The source includes React Native screens and context modules for customer browsing, vendors, cart, orders, profiles, location and notifications. Some screens use sample/demo data and local state. These are prototype components, not proof of a production-ready ordering service.
+## Current prototype
+The React Native source includes customer browsing, cart state, sample vendor data, order/profile/location screens and navigation. Some screens still contain sample/demo data or placeholder UI. No live vendor network, production account authentication, payment processing, fulfilment service or live tracking is connected.
 
-## Important gaps before public launch
-- Integrate and test the main application entry point with the Expo project.
-- Implement secure user authentication and a production backend/database.
-- Build vendor onboarding, product/inventory management and order acceptance.
-- Implement payment processing and verified payment webhooks.
-- Connect delivery partners/drivers and live order status.
-- Add privacy, security, consumer-protection and operational policies.
-- Replace placeholder artwork with approved Mzansi Cart logo and app icons.
-- Test end-to-end ordering, cancellations, refunds and delivery.
+## App structure
+- `Ubazol/`: Expo app project, app configuration, assets and package dependencies.
+- `App.js` and `src/`: shared marketplace application screens, contexts and theme.
+- `Ubazol/metro.config.js`: allows Expo Metro to watch the shared source folder one level above the Expo project.
 
-## Project layout
-- `App.js` and `src/`: marketplace application screens, contexts and theme.
-- `Ubazol/`: existing Expo starter project and package configuration. Its current `App.js` is still the Expo starter placeholder and needs to be connected to the marketplace application before running the complete app from that folder.
+## Run on Android
+1. Install Node.js and npm on a development computer.
+2. Open a terminal in the `Ubazol` folder.
+3. Run `npm install`.
+4. Run `npx expo start` and open the project in Expo Go or an Android emulator.
 
-## Development
-The repository is being rebranded on the `groot/ubazol-rebuild` branch. The production/default `main` branch is intentionally left unchanged until the changes are reviewed and tested.
+The app has not yet been executed in an Android runtime in this workflow. Validate the Metro configuration, Expo SDK dependencies, asset loading and navigation before distribution.
+
+## Before public launch
+- Implement secure server-side authentication; current local login helpers are demo-only.
+- Build vendor applications, vendor approval and inventory/order management.
+- Add a secure backend/database and role-based access controls.
+- Integrate a South African payment provider with signed server-side payment confirmation/webhooks.
+- Implement order acceptance, fulfilment, delivery status, refunds and customer support.
+- Replace sample vendor listings, placeholder imagery and app artwork with approved real content.
+- Add privacy, POPIA, consumer-protection and operational policies.
+- Test the full customer/vendor/driver workflow before accepting payments.
 
 ## Revenue model to validate
 - Commission on completed vendor orders.
-- Clearly disclosed delivery/coordination fees where applicable.
-- Optional paid featured listings for vendors.
-- Optional vendor subscription tools once the service has active customers.
+- Clearly disclosed delivery/coordination fees.
+- Optional paid featured listings.
+- Vendor subscriptions once the marketplace has active customers.
 
-No revenue, vendor participation, payment integration or delivery coverage is guaranteed by this prototype.
+Revenue, vendor participation and delivery coverage are not guaranteed by this prototype.
