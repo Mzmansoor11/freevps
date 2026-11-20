@@ -6,11 +6,14 @@ const workspaceRoot = path.resolve(projectRoot, '..');
 
 const config = getDefaultConfig(projectRoot);
 
-// The Expo app is in /Ubazol while its marketplace source lives in /src.
+// The app lives in /Ubazol and shared screens live in /src.
+// Watch the workspace, but resolve all packages from the app's own
+// node_modules folder to avoid loading stale React Native copies
+// from /workspaces/freevps/node_modules.
 config.watchFolders = [workspaceRoot];
+config.resolver.disableHierarchicalLookup = true;
 config.resolver.nodeModulesPaths = [
   path.resolve(projectRoot, 'node_modules'),
-  path.resolve(workspaceRoot, 'node_modules'),
 ];
 
 module.exports = config;
