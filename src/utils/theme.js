@@ -1,9 +1,9 @@
 export const theme = {
   colors: {
-    primary: '#6366F1',
-    secondary: '#8B5CF6',
-    accent: '#F59E0B',
-    background: '#F8FAFC',
+    primary: '#174B35',
+    secondary: '#246B4A',
+    accent: '#E3A62F',
+    background: '#F7F6F0',
     surface: '#FFFFFF',
     text: '#1E293B',
     textSecondary: '#64748B',
@@ -18,8 +18,8 @@ export const theme = {
     info: '#3B82F6',
     
     // Gradients
-    primaryGradient: ['#6366F1', '#8B5CF6'],
-    accentGradient: ['#F59E0B', '#F97316'],
+    primaryGradient: ['#174B35', '#246B4A'],
+    accentGradient: ['#E3A62F', '#F2C66D'],
     
     // Shadows
     shadowColor: '#000000',
