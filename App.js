@@ -86,7 +86,7 @@ function MainTabs() {
       <Tab.Screen 
         name="Home" 
         component={HomeScreen}
-        options={{ title: 'Ubazol' }}
+        options={{ title: 'Mzansi Cart' }}
       />
       <Tab.Screen 
         name="Vendors" 
