@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Ubazol",
-    "slug": "Ubazol",
+    "name": "Mzansi Cart",
+    "slug": "mzansi-cart",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
