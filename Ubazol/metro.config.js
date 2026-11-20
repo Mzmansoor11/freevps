@@ -11,7 +11,7 @@ const config = getDefaultConfig(projectRoot);
 // node_modules folder to avoid loading stale React Native copies
 // from /workspaces/freevps/node_modules.
 config.watchFolders = [workspaceRoot];
-config.resolver.disableHierarchicalLookup = true;
+config.resolver.disableHierarchicalLookup = false;
 config.resolver.nodeModulesPaths = [
   path.resolve(projectRoot, 'node_modules'),
 ];
