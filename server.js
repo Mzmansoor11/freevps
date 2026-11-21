@@ -115,7 +115,7 @@ async function checkDatabaseTables() {
 }
 
 const server = http.createServer(async (req, res) => {
-  const pathname = new URL(req.url, 'http://localhost').pathname.replace(/\/+$/, '') || '/';
+  const pathname = new URL(req.url, 'http://localhost').pathname.replace(/\\/+$/, '') || '/';
 
   if (req.method === 'GET' && (pathname === '/health' || pathname === '/')) {
     const connection = await checkSupabaseConnection();
