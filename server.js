@@ -34,8 +34,9 @@ async function checkSupabaseConnection() {
     const response = await fetch(endpoint, {
       method: 'GET',
       headers: {
+        // Supabase sb_secret_* keys belong in the apikey header.
+        // They are not JWTs and must not be sent as Bearer tokens.
         apikey: SUPABASE_SECRET_KEY,
-        authorization: `Bearer ${SUPABASE_SECRET_KEY}`,
         accept: 'application/openapi+json, application/json'
       },
       signal: AbortSignal.timeout(5000)
