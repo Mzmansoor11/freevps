@@ -56,7 +56,7 @@ async function checkSupabaseConnection() {
 }
 
 const server = http.createServer(async (req, res) => {
-  const pathname = new URL(req.url, 'http://localhost').pathname.replace(/\\/+$/, '') || '/';
+  const pathname = new URL(req.url, 'http://localhost').pathname.replace(/\/+$/, '') || '/';
 
   if (req.method === 'GET' && (pathname === '/health' || pathname === '/')) {
     const connection = await checkSupabaseConnection();
@@ -79,5 +79,5 @@ const server = http.createServer(async (req, res) => {
 });
 
 server.listen(PORT, '0.0.0.0', () => {
-  console.log(`Mzansi Cart API listening on port ${PORT}`);
+  console.log('Mzansi Cart API listening on port ' + PORT);
 });
