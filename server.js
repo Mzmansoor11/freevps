@@ -13,7 +13,9 @@ function sendJson(res, statusCode, payload) {
 }
 
 const server = http.createServer((req, res) => {
-  if (req.method === 'GET' && req.url === '/health') {
+  const pathname = new URL(req.url, 'http://localhost').pathname.replace(/\/+$/, '') || '/';
+
+  if (req.method === 'GET' && (pathname === '/health' || pathname === '/')) {
     return sendJson(res, 200, {
       status: 'ok',
       service: 'mzansi-cart-api',
@@ -22,7 +24,7 @@ const server = http.createServer((req, res) => {
     });
   }
 
-  if (req.url === '/api/orders') {
+  if (pathname === '/api/orders') {
     return sendJson(res, 503, {
       success: false,
       error: 'Order processing is disabled until persistent storage, authentication, vendor controls and verified payment webhooks are implemented.'
