@@ -7,8 +7,8 @@ const LoginScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.content}>
-        <Text style={styles.title}>Welcome to Ubazol</Text>
-        <Text style={styles.subtitle}>Sign in to start ordering</Text>
+        <Text style={styles.title}>Welcome to Mzansi Cart</Text>
+        <Text style={styles.subtitle}>Shop local. Get it delivered.</Text>
       </View>
     </SafeAreaView>
   );

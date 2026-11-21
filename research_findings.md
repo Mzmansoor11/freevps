@@ -1,8 +1,8 @@
-# Ubazol App Development Plan
+# Mzansi Cart — Product Development Plan
 
 ## App Description
 
-Ubazol is a delivery marketplace app that enables customers to order goods from vendors and arrange delivery to drop-off locations. It's similar to apps like DoorDash, Uber Eats, Instacart, or Postmates but can handle various types of goods beyond just food.
+Mzansi Cart is a delivery marketplace app that enables customers to order goods from vendors and arrange delivery to drop-off locations. It's similar to apps like DoorDash, Uber Eats, Instacart, or Postmates but can handle various types of goods beyond just food.
 
 ## Core Features
 

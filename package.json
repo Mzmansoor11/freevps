@@ -1,0 +1,12 @@
+{
+  "name": "mzansi-cart-api",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Free-tier development API foundation for Mzansi Cart",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

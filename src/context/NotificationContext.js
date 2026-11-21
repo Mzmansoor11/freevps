@@ -79,8 +79,6 @@ export const NotificationProvider = ({ children }) => {
   const [state, dispatch] = useReducer(notificationReducer, initialState);
 
   useEffect(() => {
-    registerForPushNotificationsAsync();
-    
     // Listen for notifications
     const notificationListener = Notifications.addNotificationReceivedListener(notification => {
       addNotification({
@@ -93,11 +91,11 @@ export const NotificationProvider = ({ children }) => {
     });
 
     return () => {
-      Notifications.removeNotificationSubscription(notificationListener);
+      notificationListener.remove();
     };
   }, []);
 
-  const registerForPushNotificationsAsync = async () => {
+  const requestPushPermission = async () => {
     try {
       const { status: existingStatus } = await Notifications.getPermissionsAsync();
       let finalStatus = existingStatus;
@@ -164,6 +162,7 @@ export const NotificationProvider = ({ children }) => {
     removeNotification,
     clearNotifications,
     scheduleNotification,
+    requestPushPermission,
     clearError,
   };
 
