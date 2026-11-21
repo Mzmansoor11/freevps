@@ -146,102 +146,32 @@ export const OrderProvider = ({ children }) => {
     }
   };
 
-  const createOrder = async (orderData) => {
-    try {
-      dispatch({ type: ORDER_ACTION_TYPES.SET_LOADING, payload: true });
+  // Order creation stays disabled until real payment confirmation and vendor
+  // acceptance are connected. Never create a local order that looks real.
+  const createOrder = async () => ({
+    success: false,
+    error: 'Order submission is not available yet. Payments and vendor order processing are not connected.',
+  });
 
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
+  // Status changes must come from a verified backend/vendor event in a future
+  // integration, not from a local timer or a customer-side action.
+  const updateOrderStatus = async () => ({
+    success: false,
+    error: 'Order status updates are not connected to the backend yet.',
+  });
 
-      const newOrder = {
-        id: Date.now().toString(),
-        ...orderData,
-        status: ORDER_STATUS.PENDING,
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-        estimatedDeliveryTime: new Date(Date.now() + 30 * 60 * 1000).toISOString(), // 30 minutes from now
-      };
+  // Cancellation requires a real backend/vendor workflow and is disabled for now.
+  const cancelOrder = async () => ({
+    success: false,
+    error: 'Order cancellation is not available until vendor order processing is connected.',
+  });
 
-      dispatch({ type: ORDER_ACTION_TYPES.ADD_ORDER, payload: newOrder });
-
-      // Simulate status updates
-      setTimeout(() => {
-        updateOrderStatus(newOrder.id, ORDER_STATUS.CONFIRMED);
-      }, 5000);
-
-      setTimeout(() => {
-        updateOrderStatus(newOrder.id, ORDER_STATUS.PREPARING);
-      }, 10000);
-
-      return { success: true, order: newOrder };
-    } catch (error) {
-      dispatch({ type: ORDER_ACTION_TYPES.SET_ERROR, payload: error.message });
-      return { success: false, error: error.message };
-    }
-  };
-
-  const updateOrderStatus = async (orderId, status) => {
-    try {
-      const updatedOrder = {
-        id: orderId,
-        status,
-        updatedAt: new Date().toISOString(),
-      };
-
-      dispatch({ type: ORDER_ACTION_TYPES.UPDATE_ORDER, payload: updatedOrder });
-
-      return { success: true };
-    } catch (error) {
-      dispatch({ type: ORDER_ACTION_TYPES.SET_ERROR, payload: error.message });
-      return { success: false, error: error.message };
-    }
-  };
-
-  const cancelOrder = async (orderId) => {
-    try {
-      // Check if order can be cancelled
-      const order = state.orders.find(o => o.id === orderId);
-      if (!order) {
-        throw new Error('Order not found');
-      }
-
-      if ([ORDER_STATUS.OUT_FOR_DELIVERY, ORDER_STATUS.DELIVERED].includes(order.status)) {
-        throw new Error('Order cannot be cancelled at this stage');
-      }
-
-      dispatch({ type: ORDER_ACTION_TYPES.CANCEL_ORDER, payload: orderId });
-
-      return { success: true };
-    } catch (error) {
-      dispatch({ type: ORDER_ACTION_TYPES.SET_ERROR, payload: error.message });
-      return { success: false, error: error.message };
-    }
-  };
-
-  const reorder = async (orderId) => {
-    try {
-      const order = state.orders.find(o => o.id === orderId);
-      if (!order) {
-        throw new Error('Order not found');
-      }
-
-      const reorderData = {
-        items: order.items,
-        vendor: order.vendor,
-        deliveryAddress: order.deliveryAddress,
-        totalPrice: order.totalPrice,
-        deliveryFee: order.deliveryFee,
-        serviceFee: order.serviceFee,
-        tax: order.tax,
-        paymentMethod: order.paymentMethod,
-      };
-
-      return await createOrder(reorderData);
-    } catch (error) {
-      dispatch({ type: ORDER_ACTION_TYPES.SET_ERROR, payload: error.message });
-      return { success: false, error: error.message };
-    }
-  };
+  // Reordering also stays disabled until checkout, payment and vendor fulfilment
+  // are implemented end to end.
+  const reorder = async () => ({
+    success: false,
+    error: 'Reordering is not available until real checkout and vendor processing are connected.',
+  });
 
   const trackOrder = (orderId) => {
     const order = state.orders.find(o => o.id === orderId);
