@@ -50,7 +50,7 @@ const CheckoutScreen = ({ navigation }) => {
       Alert.alert('Missing details', 'Please complete your name, phone number, street address, suburb and postal code.');
       return;
     }
-    if (details.phone.replace(/\\D/g, '').length < 9) {
+    if (details.phone.replace(/\D/g, '').length < 9) {
       Alert.alert('Check phone number', 'Please enter a valid contact number.');
       return;
     }
