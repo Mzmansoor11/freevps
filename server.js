@@ -16,18 +16,18 @@ function sendJson(res, statusCode, payload) {
 
 async function checkSupabaseConnection() {
   if (!SUPABASE_URL || !SUPABASE_SECRET_KEY) {
-    return 'not-configured';
+    return { persistence: 'unavailable', persistenceDetail: 'missing-environment-variable' };
   }
 
   let endpoint;
   try {
     const projectUrl = new URL(SUPABASE_URL);
     if (projectUrl.protocol !== 'https:') {
-      return 'configuration-error';
+      return { persistence: 'unavailable', persistenceDetail: 'invalid-project-url' };
     }
     endpoint = new URL('/rest/v1/', projectUrl).toString();
   } catch {
-    return 'configuration-error';
+    return { persistence: 'unavailable', persistenceDetail: 'invalid-project-url' };
   }
 
   try {
@@ -42,22 +42,29 @@ async function checkSupabaseConnection() {
       signal: AbortSignal.timeout(5000)
     });
 
-    return response.ok ? 'connected' : 'unavailable';
-  } catch {
-    return 'unavailable';
+    return {
+      persistence: response.ok ? 'connected' : 'unavailable',
+      persistenceDetail: response.ok ? 'ok' : 'supabase-http-error',
+      supabaseHttpStatus: response.status
+    };
+  } catch (error) {
+    return {
+      persistence: 'unavailable',
+      persistenceDetail: error && error.name === 'TimeoutError' ? 'timeout' : 'network-error'
+    };
   }
 }
 
 const server = http.createServer(async (req, res) => {
-  const pathname = new URL(req.url, 'http://localhost').pathname.replace(/\/+$/, '') || '/';
+  const pathname = new URL(req.url, 'http://localhost').pathname.replace(/\\/+$/, '') || '/';
 
   if (req.method === 'GET' && (pathname === '/health' || pathname === '/')) {
-    const persistence = await checkSupabaseConnection();
+    const connection = await checkSupabaseConnection();
     return sendJson(res, 200, {
       status: 'ok',
       service: 'mzansi-cart-api',
       mode: 'development',
-      persistence
+      ...connection
     });
   }
 
